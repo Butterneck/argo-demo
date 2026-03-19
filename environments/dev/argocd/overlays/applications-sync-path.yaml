@@ -1,0 +1,30 @@
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: ApplicationSet
+# metadata:
+#   name: main
+#   namespace: argocd
+# spec:
+#   generators:
+#     - git:
+#         repoURL: https://github.com/varda-ag/apps-dev.git
+#         revision: HEAD
+#         files:
+#           - path: "apps/*.yaml"
+#   template:
+#     spec:
+#       source:
+#         repoURL: https://github.com/varda-ag/apps-dev.git
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: ApplicationSet
+# metadata:
+#   name: helm
+#   namespace: argocd
+# spec:
+#   template:
+#     spec:
+#       source:
+#         helm:
+#           valueFiles: 
+#             - "environments/dev/values.yaml"

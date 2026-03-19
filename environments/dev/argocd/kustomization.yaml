@@ -1,0 +1,16 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: argocd
+
+resources:
+- https://raw.githubusercontent.com/argoproj/argo-cd/refs/tags/v3.3.4/manifests/install.yaml
+- base/httproute.yaml
+- base/applicationset.yaml
+- base/namespace.yaml
+
+patches:
+- path: overlays/resource-tracking-method.yaml
+- path: overlays/increase-k8s-client-qps.yaml
+- path: overlays/expose-internally.yaml
